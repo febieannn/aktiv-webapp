@@ -85,7 +85,7 @@ export default function Activity() {
             </div>
           ) : (
             <div className="hint-empty">
-              <span aria-hidden="true">🙈</span>
+              <span aria-hidden="true"></span>
               <strong>Hints are hidden</strong>
               <p>Try it on your own first. Turn the switch on if you get stuck.</p>
             </div>

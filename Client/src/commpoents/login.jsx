@@ -72,7 +72,7 @@ export default function Login() {
         <p className="muted">Log in to continue your coding journey and keep building your skills with aktiv.</p>
 
         <Field label="Email Address" icon="✉" type="email" placeholder="Enter your email" value={form.email} onChange={set("email")} required />
-        <Field label="Password" icon="🔒" type="password" placeholder="Enter your password" value={form.password} onChange={set("password")} required />
+        <Field label="Password" icon="🔒︎" type="password" placeholder="Enter your password" value={form.password} onChange={set("password")} required />
         <a href="#" className="forgot">Forgot Password?</a>
 
         {error && <p className="error" role="alert">{error}</p>}

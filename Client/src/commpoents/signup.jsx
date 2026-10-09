@@ -30,8 +30,8 @@ export default function Signup() {
 
         <Field label="Fullname" icon="👤" placeholder="Enter your full name" value={f.name} onChange={set("name")} required />
         <Field label="Email Address" icon="✉" type="email" placeholder="you@example.com" value={f.email} onChange={set("email")} required />
-        <Field label="Password" icon="🔒" type="password" placeholder="Create a password" value={f.password} onChange={set("password")} required minLength={8} />
-        <Field label="Confirm Password" icon="🔒" type="password" placeholder="Confirm your password" value={f.confirm} onChange={set("confirm")} required />
+        <Field label="Password" icon="🔒︎" type="password" placeholder="Create a password" value={f.password} onChange={set("password")} required minLength={8} />
+        <Field label="Confirm Password" icon="🔒︎" type="password" placeholder="Confirm your password" value={f.confirm} onChange={set("confirm")} required />
         {error && <p className="error" role="alert">{error}</p>}
 
         <button className="btn btn-primary btn-block">Sign Up →</button>

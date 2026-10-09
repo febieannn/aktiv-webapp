@@ -15,7 +15,7 @@ const Private = ({ children }) => (getToken() ? children : <Navigate to="/login"
 function PublicNav() {
   return (
     <header className="nav">
-      <Link to="/" className="logo">aktiv</Link>
+      <img src="/aktiv.png" alt="Aktiv Logo" width="95" />
       <nav className="nav-links">
         <a href="/#top">Home</a>
         <a href="/#features">Features</a>
@@ -34,7 +34,7 @@ function PublicNav() {
 function AppNav() {
   return (
     <header className="nav">
-      <Link to="/home" className="logo">aktiv</Link>
+     <img src="/aktiv.png" alt="Aktiv Logo" width="95" />
       <nav className="nav-links">
         <NavLink to="/home">Home</NavLink>
         <NavLink to="/activities">Activities</NavLink>
@@ -42,9 +42,8 @@ function AppNav() {
         <a href="/home#how-it-works">How it works</a>
       </nav>
       <div className="nav-actions">
-        <button className="icon-btn" aria-label="Notifications">🔔</button>
         <Link to="/settings" className="user-chip">
-          <span className="avatar sm">JD</span> Username
+         Settings
         </Link>
       </div>
     </header>
@@ -54,7 +53,7 @@ function AppNav() {
 function Footer() {
   return (
     <footer className="footer">
-      <span className="logo">aktiv</span>
+      <img src="/aktiv.png" alt="Aktiv Logo" width="95" />
       <nav>
         <a href="#">About</a><a href="#">Features</a><a href="#">Contact</a>
         <a href="#">Privacy Policy</a><a href="#">Terms</a>
