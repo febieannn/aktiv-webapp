@@ -31,19 +31,6 @@ function PublicNav() {
   );
 }
 
-const response = await fetch(`${Server_KEY}/login`, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    email,
-    password,
-  }),
-});
-
-const data = await response.json();
-
 /* Signed-in header */
 function AppNav() {
   return (

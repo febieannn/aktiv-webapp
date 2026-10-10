@@ -2,10 +2,6 @@
 const BASE = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 const KEY = "aktiv_token";
 
-const Server_KEY = import.meta.env.VITE_API_URL;
-export default Server_KEY;
-
-
 export const getToken = () => localStorage.getItem(KEY);
 const setToken = (t) => localStorage.setItem(KEY, t);
 const clearToken = () => localStorage.removeItem(KEY);
