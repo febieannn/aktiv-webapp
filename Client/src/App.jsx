@@ -19,7 +19,6 @@ const response = await fetch(`${API_URL}/login`, {
     password,
   }),
 });
-
 const data = await response.json();
 
 const Private = ({ children }) => (getToken() ? children : <Navigate to="/login" replace />);
