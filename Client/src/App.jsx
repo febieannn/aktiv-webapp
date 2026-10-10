@@ -7,7 +7,6 @@ import Activity from "./pages/Activity.jsx";
 import Progress from "./pages/Progress.jsx";
 import Settings from "./pages/Settings.jsx";
 import { getToken } from "./api.js";
-import API_URL from "./api";
 
 const response = await fetch(`${API_URL}/login`, {
   method: "POST",
