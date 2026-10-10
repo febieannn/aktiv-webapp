@@ -6,11 +6,8 @@ export const getToken = () => localStorage.getItem(KEY);
 const setToken = (t) => localStorage.setItem(KEY, t);
 const clearToken = () => localStorage.removeItem(KEY);
 
-
 const API_URL = import.meta.env.VITE_API_URL;
-
 export default API_URL;
-
 
 async function request(path, { method = "GET", body } = {}) {
   const token = getToken();

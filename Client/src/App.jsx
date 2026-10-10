@@ -22,7 +22,6 @@ const response = await fetch(`${API_URL}/login`, {
 
 const data = await response.json();
 
-
 const Private = ({ children }) => (getToken() ? children : <Navigate to="/login" replace />);
 
 /* Public header: landing, login, signup */
