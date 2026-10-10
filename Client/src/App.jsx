@@ -7,9 +7,22 @@ import Activity from "./pages/Activity.jsx";
 import Progress from "./pages/Progress.jsx";
 import Settings from "./pages/Settings.jsx";
 import { getToken } from "./api.js";
-import Server_KEY from "./api";
+import API_URL from "./api";
 
-/* Redirect to /login when there is no session token */
+const response = await fetch(`${API_URL}/login`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    email,
+    password,
+  }),
+});
+
+const data = await response.json();
+
+
 const Private = ({ children }) => (getToken() ? children : <Navigate to="/login" replace />);
 
 /* Public header: landing, login, signup */
