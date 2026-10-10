@@ -8,8 +8,6 @@ import Progress from "./pages/Progress.jsx";
 import Settings from "./pages/Settings.jsx";
 import { getToken } from "./api.js";
 
-const data = await response.json();
-
 const Private = ({ children }) => (getToken() ? children : <Navigate to="/login" replace />);
 
 /* Public header: landing, login, signup */
