@@ -8,17 +8,6 @@ import Progress from "./pages/Progress.jsx";
 import Settings from "./pages/Settings.jsx";
 import { getToken } from "./api.js";
 
-const response = await fetch(`${Server_KEY}/login`, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    email,
-    password,
-  }),
-});
-
 const data = await response.json();
 
 const Private = ({ children }) => (getToken() ? children : <Navigate to="/login" replace />);
