@@ -7,8 +7,9 @@ import Activity from "./pages/Activity.jsx";
 import Progress from "./pages/Progress.jsx";
 import Settings from "./pages/Settings.jsx";
 import { getToken } from "./api.js";
+import Server_KEY from "./api";
 
-const response = await fetch(`${API_URL}/login`, {
+const response = await fetch(`${Server_KEY}/login`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
