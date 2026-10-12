@@ -44,6 +44,7 @@ function explain(err) {
 const app = express();
 const origins = [
   "http://localhost:5173",
+  "https://aktiv-webapp-5xbk.vercel.app",
   ...(process.env.CLIENT_URL || "").split(",").map((s) => s.trim()).filter(Boolean),
 ];
 app.use(cors({ origin: (origin, cb) => cb(null, !origin || origins.includes("*") || origins.includes(origin)) }));

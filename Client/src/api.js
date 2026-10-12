@@ -1,5 +1,9 @@
 // Thin wrapper around the aktiv Server API.
-const BASE = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const configuredBase = (import.meta.env.VITE_API_URL || "https://aktiv-webapp-1.onrender.com")
+  .replace(/\/+$/, "");
+const BASE = import.meta.env.DEV
+  ? "/api"
+  : configuredBase.endsWith("/api") ? configuredBase : `${configuredBase}/api`;
 const KEY = "aktiv_token";
 
 export const getToken = () => localStorage.getItem(KEY);
@@ -19,8 +23,8 @@ async function request(path, { method = "GET", body } = {}) {
       },
       body: body ? JSON.stringify(body) : undefined,
     });
-  } catch {
-    throw new Error("Can't reach the server. Check that it's running and try again.");
+  } catch (error) {
+    throw new Error(`Can't reach the server at ${BASE}. ${error.message}`);
   }
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.message || "Something went wrong. Try again.");
