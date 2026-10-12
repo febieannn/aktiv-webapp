@@ -3,23 +3,9 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Modal from "../commpoents/Modal.jsx";
 import { ACTIVITIES } from "../data.js";
 
-const STARTER_HTML = `<nav class="nav">
-  <span class="logo">MySite</span>
-  <ul class="links">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-</nav>`;
-const STARTER_CSS = `body { margin: 0; font-family: sans-serif; }
-
-.nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 24px;
-  background: #132c5e;
-  color: #fff;
-}`;
+const STARTER_HTML = ``;
+const STARTER_CSS = `
+`;
 
 const HINTS = [
   "Start with the structure: which HTML elements does this need?",
