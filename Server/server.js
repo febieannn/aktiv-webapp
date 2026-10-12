@@ -42,7 +42,10 @@ function explain(err) {
 
 /* ---- App ---- */
 const app = express();
-const origins = (process.env.CLIENT_URL || "http://localhost:5173").split(",").map((s) => s.trim());
+const origins = [
+  "http://localhost:5173",
+  ...(process.env.CLIENT_URL || "").split(",").map((s) => s.trim()).filter(Boolean),
+];
 app.use(cors({ origin: (origin, cb) => cb(null, !origin || origins.includes("*") || origins.includes(origin)) }));
 app.use(express.json());
 
