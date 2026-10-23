@@ -52,11 +52,7 @@ function AppNav() {
 function Footer() {
   return (
     <footer className="footer">
-      <img src="/aktiv.png" alt="Aktiv Logo" width="95" />
-      <nav>
-        <a href="#">About</a><a href="#">Features</a><a href="#">Contact</a>
-        <a href="#">Privacy Policy</a><a href="#">Terms</a>
-      </nav>
+     
     </footer>
   );
 }

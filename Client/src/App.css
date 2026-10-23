@@ -56,6 +56,93 @@ main { flex: 1; }
 .footer nav { display: flex; gap: 1.6rem; }
 .footer a { color: var(--navy); }
 
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  transition: opacity 0.2s ease;
+}
+
+.login-button:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.login-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: login-spin 0.7s linear infinite;
+}
+
+.login-wait {
+  margin-top: 10px;
+  color: #6b7280;
+  font-size: 13px;
+  text-align: center;
+}
+
+@keyframes login-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-spinner {
+    animation-duration: 2s;
+  }
+}
+
+
+.signup-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  transition: opacity 0.2s ease;
+}
+
+.signup-button:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.signup-spinner {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: signup-spin 0.7s linear infinite;
+}
+
+.signup-wait {
+  margin-top: 10px;
+  color: #6b7280;
+  font-size: 13px;
+  text-align: center;
+}
+
+@keyframes signup-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signup-spinner {
+    animation-duration: 2s;
+  }
+}
+
+
 /* landing */
 .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; padding: 4rem 5rem; background: var(--cream); }
 .hero h1 { font-size: 2.4rem; line-height: 1.2; }
