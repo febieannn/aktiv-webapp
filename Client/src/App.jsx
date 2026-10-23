@@ -19,7 +19,6 @@ function PublicNav() {
         <a href="/#top">Home</a>
         <a href="/#features">Features</a>
         <a href="/#how">How it works</a>
-        <a href="/#why">About</a>
       </nav>
       <div className="nav-actions">
         <Link to="/login" className="btn btn-outline btn-sm">Login</Link>

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api } from "../api.js";
-import { AuthArt, Field, GoogleButton } from "./login.jsx";
+import { AuthArt, Field } from "./login.jsx";
 
 export default function Signup() {
   const nav = useNavigate();
@@ -15,16 +15,15 @@ export default function Signup() {
   });
 
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const set = (k) => (e) => {
-    setF((prev) => ({ ...prev, [k]: e.target.value }));
-  };
+  const set = (k) => (e) =>
+    setF({ ...f, [k]: e.target.value });
 
   const submit = async (e) => {
     e.preventDefault();
 
-    if (loading) return;
+    if (isLoading) return;
 
     if (f.password !== f.confirm) {
       setError("Passwords don't match. Re-enter both and try again.");
@@ -32,20 +31,20 @@ export default function Signup() {
     }
 
     setError("");
-    setLoading(true);
+    setIsLoading(true);
 
     try {
       await api.signup({
-        fullname: f.name.trim(),
-        email: f.email.trim(),
+        fullname: f.name,
+        email: f.email,
         password: f.password,
       });
 
-      nav("/home", { replace: true });
+      nav("/home");
     } catch (err) {
       setError(err.message || "Unable to create your account. Please try again.");
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -64,12 +63,10 @@ export default function Signup() {
         <Field
           label="Fullname"
           icon="👤"
-          type="text"
           placeholder="Enter your full name"
           value={f.name}
           onChange={set("name")}
           required
-          disabled={loading}
         />
 
         <Field
@@ -80,7 +77,6 @@ export default function Signup() {
           value={f.email}
           onChange={set("email")}
           required
-          disabled={loading}
         />
 
         <Field
@@ -92,7 +88,6 @@ export default function Signup() {
           onChange={set("password")}
           required
           minLength={8}
-          disabled={loading}
         />
 
         <Field
@@ -103,7 +98,6 @@ export default function Signup() {
           value={f.confirm}
           onChange={set("confirm")}
           required
-          disabled={loading}
         />
 
         {error && (
@@ -114,11 +108,11 @@ export default function Signup() {
 
         <button
           type="submit"
-          className="btn btn-primary btn-block signup-button"
-          disabled={loading}
-          aria-busy={loading}
+          className={`btn btn-primary btn-block ${isLoading ? "signup-loading" : ""}`}
+          disabled={isLoading}
+          aria-busy={isLoading}
         >
-          {loading ? (
+          {isLoading ? (
             <>
               <span className="signup-spinner" aria-hidden="true" />
               Creating account...
@@ -127,18 +121,6 @@ export default function Signup() {
             "Sign Up →"
           )}
         </button>
-
-        {loading && (
-          <p className="signup-wait" role="status">
-            Please wait while we create your account.
-          </p>
-        )}
-
-        <div className="or">
-          <span>OR</span>
-        </div>
-
-        <GoogleButton>Sign Up with Google</GoogleButton>
 
         <p className="switch">
           Already have an account? <Link to="/login">Login</Link>

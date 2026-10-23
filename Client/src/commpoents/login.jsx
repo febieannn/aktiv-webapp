@@ -140,7 +140,7 @@ export default function Login() {
 
         <Field
           label="Password"
-          icon="🔒"
+          icon="🔒︎"
           type="password"
           placeholder="Enter your password"
           value={form.password}

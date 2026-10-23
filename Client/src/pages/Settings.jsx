@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api.js";
@@ -10,6 +11,47 @@ const TABS = [
   ["notifications", "Notifications"],
   ["manage", "Manage Account"],
 ];
+
+/* Password Field — No Eye Toggle */
+function PasswordField({
+  label,
+  value,
+  onChange,
+  autoComplete,
+  placeholder,
+  disabled = false,
+  required = false,
+}) {
+  return (
+    <label className="field">
+      <span>{label}</span>
+
+      <div className="settings-password-wrap">
+        <input
+          type="password"
+          value={value}
+          onChange={onChange}
+          autoComplete={autoComplete}
+          placeholder={placeholder}
+          disabled={disabled}
+          required={required}
+        />
+      </div>
+    </label>
+  );
+}
+
+const statusClass = (status) => {
+  if (status === "Complete") return "ok";
+  if (status === "In Progress") return "wip";
+  return "new";
+};
+
+const cta = (status) => {
+  if (status === "Complete") return "View Activity";
+  if (status === "In Progress") return "Continue";
+  return "Start Activity";
+};
 
 export default function Settings() {
   const nav = useNavigate();
@@ -41,6 +83,7 @@ export default function Settings() {
     async function loadAccount() {
       try {
         const response = await api.me();
+
         const user =
           response?.user ??
           response?.data?.user ??
@@ -69,7 +112,8 @@ export default function Settings() {
       } catch (err) {
         if (active) {
           setError(
-            err?.message || "Unable to load your account information."
+            err?.message ||
+              "Unable to load your account information."
           );
         }
       } finally {
@@ -105,6 +149,7 @@ export default function Settings() {
       password: "",
       confirm: "",
     });
+
     setError("");
   };
 
@@ -135,6 +180,7 @@ export default function Settings() {
 
     try {
       const response = await api.updateMe(changes);
+
       const user =
         response?.user ??
         response?.data?.user ??
@@ -160,7 +206,9 @@ export default function Settings() {
       setOriginal(updated);
       window.alert("Account updated successfully!");
     } catch (err) {
-      setError(err?.message || "Unable to update your account.");
+      setError(
+        err?.message || "Unable to update your account."
+      );
     } finally {
       setSaving(false);
     }
@@ -188,7 +236,9 @@ export default function Settings() {
       setDialog(null);
       nav("/", { replace: true });
     } catch (err) {
-      window.alert(err?.message || "Unable to delete your account.");
+      window.alert(
+        err?.message || "Unable to delete your account."
+      );
     } finally {
       setDeleting(false);
     }
@@ -241,7 +291,8 @@ export default function Settings() {
                   event.key === "ArrowLeft"
                 ) {
                   nextIndex =
-                    (currentIndex - 1 + TABS.length) % TABS.length;
+                    (currentIndex - 1 + TABS.length) %
+                    TABS.length;
                 } else if (event.key === "Home") {
                   nextIndex = 0;
                 } else if (event.key === "End") {
@@ -254,6 +305,7 @@ export default function Settings() {
 
                 const [nextTab] = TABS[nextIndex];
                 setTab(nextTab);
+
                 document
                   .getElementById(`settings-tab-${nextTab}`)
                   ?.focus();
@@ -273,6 +325,7 @@ export default function Settings() {
               className="card settings-card"
             >
               <h3>Account Settings</h3>
+
               <p className="muted">
                 Update your profile and sign-in information.
               </p>
@@ -312,29 +365,23 @@ export default function Settings() {
                       />
                     </label>
 
-                    <label className="field">
-                      <span>New Password</span>
-                      <input
-                        type="password"
-                        value={form.password}
-                        onChange={updateField("password")}
-                        autoComplete="new-password"
-                        placeholder="Leave blank to keep current password"
-                      />
-                    </label>
+                    <PasswordField
+                      label="New Password"
+                      value={form.password}
+                      onChange={updateField("password")}
+                      autoComplete="new-password"
+                      placeholder="Leave blank to keep current password"
+                    />
 
-                    <label className="field">
-                      <span>Confirm Password</span>
-                      <input
-                        type="password"
-                        value={form.confirm}
-                        onChange={updateField("confirm")}
-                        autoComplete="new-password"
-                        placeholder="Confirm your new password"
-                        disabled={!form.password}
-                        required={Boolean(form.password)}
-                      />
-                    </label>
+                    <PasswordField
+                      label="Confirm Password"
+                      value={form.confirm}
+                      onChange={updateField("confirm")}
+                      autoComplete="new-password"
+                      placeholder="Confirm your new password"
+                      disabled={!form.password}
+                      required={Boolean(form.password)}
+                    />
                   </div>
 
                   <div className="form-actions">
@@ -380,6 +427,7 @@ export default function Settings() {
             >
               <div className="card settings-card">
                 <h3>Manage Account</h3>
+
                 <p className="muted">
                   Manage your session and account.
                 </p>
@@ -407,8 +455,8 @@ export default function Settings() {
                   <div>
                     <strong>Delete Account</strong>
                     <small>
-                      This action may permanently remove your account and
-                      associated data.
+                      This action may permanently remove your account
+                      and associated data.
                     </small>
                   </div>
 
@@ -429,6 +477,7 @@ export default function Settings() {
       {dialog === "signout" && (
         <Modal onClose={close}>
           <h3>Sign out?</h3>
+
           <p>
             Are you sure you want to sign out of your Aktiv account?
           </p>
@@ -458,6 +507,7 @@ export default function Settings() {
       {dialog === "delete" && (
         <Modal onClose={close}>
           <h3>Delete Account?</h3>
+
           <p>
             Are you sure you want to continue? This action may not be
             reversible.

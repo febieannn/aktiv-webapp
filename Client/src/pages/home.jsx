@@ -5,6 +5,15 @@ import { ACTIVITIES } from "../data.js";
 
 const INITIAL_STATUS = "Not Started";
 
+const STEPS = [
+  "Create an account",
+  "Choose a language",
+  "Start a challenge",
+  "Submit your answer",
+  "Receive feedback",
+  "Improve your skills",
+];
+
 const statusClass = (status) => {
   if (status === "Complete") return "ok";
   if (status === "In Progress") return "wip";
@@ -60,11 +69,32 @@ function Banner({ title, sub, eyebrow }) {
   );
 }
 
+/* How It Works Section */
+function HowItWorks() {
+  return (
+    <section id="how-it-works" className="how-section">
+      <h2>How It Works</h2>
+
+      <ol className="steps">
+        {STEPS.map((step, index) => (
+          <li key={step} className="step-item">
+            <span className="num">{index + 1}</span>
+            <span className="step-label">{step}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
 /* Home Dashboard */
 export default function Home() {
   const [statuses] = useState(() =>
     Object.fromEntries(
-      ACTIVITIES.map((activity) => [activity.id, INITIAL_STATUS])
+      ACTIVITIES.map((activity) => [
+        activity.id,
+        INITIAL_STATUS,
+      ])
     )
   );
 
@@ -92,14 +122,7 @@ export default function Home() {
         ))}
       </div>
 
-      <h2 id="how-it-works" className="section-title">
-        How it works
-      </h2>
-
-      <p className="muted">
-        Pick an activity, write HTML and CSS, preview it live, then
-        submit to get instant feedback.
-      </p>
+      <HowItWorks />
     </section>
   );
 }
@@ -110,7 +133,10 @@ export function YourActivities() {
 
   const [statuses] = useState(() =>
     Object.fromEntries(
-      ACTIVITIES.map((activity) => [activity.id, INITIAL_STATUS])
+      ACTIVITIES.map((activity) => [
+        activity.id,
+        INITIAL_STATUS,
+      ])
     )
   );
 
@@ -146,7 +172,9 @@ export function YourActivities() {
               const count =
                 tab === "All"
                   ? activities.length
-                  : activities.filter((a) => a.status === tab).length;
+                  : activities.filter(
+                      (a) => a.status === tab
+                    ).length;
 
               return (
                 <button
