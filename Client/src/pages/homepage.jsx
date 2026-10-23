@@ -38,7 +38,7 @@ export default function HomePage() {
 
           <div className="row">
             <Link to="/signup" className="btn btn-primary">
-              Start Practising
+              Start Practicing
             </Link>
 
             <a href="#features" className="btn btn-outline">
